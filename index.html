@@ -55,14 +55,7 @@
     /* Hero */
     header.hero{padding:84px 0 48px;border-bottom:1px solid var(--line)}
     h1{font-size:clamp(32px,4.2vw,56px);line-height:1.08;margin:8px 0 10px}
-    .kicker {
-          color: var(--muted);
-          text-transform: uppercase;
-          letter-spacing: .14em;
-          font-weight: 600;
-          font-size: 12px;
-          margin-bottom: 20px;
-        }
+    .kicker{color:var(--muted);text-transform:uppercase;letter-spacing:.14em;font-weight:600;font-size:12px;margin-bottom:20px;}
     .lead{color:var(--muted);font-size:clamp(16px,2vw,20px);max-width:840px}
     .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
     .ghost{border:1px solid var(--line);padding:10px 14px;border-radius:var(--radius);color:var(--text);font-weight:600}
@@ -137,6 +130,69 @@
       width: auto;      /* keeps aspect ratio */
       border-radius: 4px; /* optional: soften edges */
     }
+    /* Accordion (Open Positions) */
+    .accordion { display: grid; gap: 14px; }
+    .accordion details.card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .accordion summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 16px 18px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .accordion summary::-webkit-details-marker { display: none; }
+
+    .accordion .summary-title {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .accordion .summary-title h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+    .accordion .summary-title p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .accordion summary .chevron {
+      transition: transform .25s ease;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--brand);
+    }
+    .accordion details[open] summary .chevron { transform: rotate(180deg); }
+
+    .accordion .content {
+      padding: 0 18px 18px 18px;
+      border-top: 1px solid var(--line);
+      animation: accordion-reveal .2s ease;
+    }
+
+    @keyframes accordion-reveal {
+      from { opacity: 0; transform: translateY(-4px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .accordion .btn-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
   </style>
   <script type="application/ld+json">
   {
@@ -307,42 +363,128 @@
   <section id="openings">
     <div class="container">
       <h2>Open Positions</h2>
-      <div class="card">
-        <h3>Postdoctoral Researchers — AI, Digital Health &amp; Genomics</h3>
-        <p class="muted">
-          Join us to build interpretable AI that links wearable-derived digital phenotypes with genomics and clinical data
-          for precision neurology.
-        </p>
 
-        <h3>Research opportunities in the lab include:</h3>
-        <ul class="muted">
-          <li>Building novel AI/ML models for multi-modal digital health time-series and genomic data</li>
-          <li>Developing digital biomarkers from real-world digital health (e.g., wearable) data</li>
-          <li>Integrating genomics/genetics with digital health to identify therapeutic targets</li>
-          <li>Translating computational findings into mechanistic and clinical insights</li>
-        </ul>
+      <div class="accordion">
 
-        <h3>Qualifications:</h3>
-        <ul class="muted">
-          <li>PhD in computational biology, computer science, statistics, math, neuroscience, or related field</li>
-          <li>Strong background in AI/ML, coding, data science, and statistics</li>
-          <li>Enthusiasm for interdisciplinary research and collaborative team science</li>
-        </ul>
+        <!-- Postdoctoral Researchers -->
+        <details class="card" open>
+          <summary>
+            <div class="summary-title">
+              <h3>Postdoctoral Researchers — AI, Digital Health &amp; Genomics</h3>
+              <p>Join us to build interpretable AI that links wearable-derived digital phenotypes with genomics and clinical data for precision neurology.</p>
+            </div>
+            <span class="chevron">▾</span>
+          </summary>
+          <div class="content">
+            <h3>Research opportunities in the lab include:</h3>
+            <ul class="muted">
+              <li>Building novel AI/ML models for multi-modal digital health time-series and genomic data</li>
+              <li>Developing digital biomarkers from real-world digital health (e.g., wearable) data</li>
+              <li>Integrating genomics/genetics with digital health to identify therapeutic targets</li>
+              <li>Translating computational findings into mechanistic and clinical insights</li>
+            </ul>
 
-        <h3>What we offer:</h3>
-        <ul class="muted">
-          <li>A highly collaborative environment at the intersection of AI and medicine</li>
-          <li>Access to large-scale datasets and Mount Sinai’s advanced computing resources</li>
-          <li>Mentorship tailored for academic and industry career paths</li>
-        </ul>
+            <h3>Qualifications:</h3>
+            <ul class="muted">
+              <li>PhD in computational biology, computer science, statistics, math, neuroscience, or related field</li>
+              <li>Strong background in AI/ML, coding, data science, and statistics</li>
+              <li>Enthusiasm for interdisciplinary research and collaborative team science</li>
+            </ul>
 
-        <p class="muted">
-          Interested candidates should send a CV and a brief statement of research interests to
-          <strong>contact (at) liujlab (dot) org</strong>.
-        </p>
+            <h3>What we offer:</h3>
+            <ul class="muted">
+              <li>A highly collaborative environment at the intersection of AI and medicine</li>
+              <li>Access to large-scale datasets and Mount Sinai’s advanced computing resources</li>
+              <li>Mentorship tailored for academic and industry career paths</li>
+            </ul>
+
+            <div class="btn-row">
+              <a class="btn" href="mailto:contact@liujlab.org?subject=Postdoc%20Application%20-%20Liu%20Lab">Apply via Email</a>
+              <a class="ghost" href="#contact">General Questions</a>
+            </div>
+          </div>
+        </details>
+
+        <!-- Graduate Students (PhD via GSBS / MD-PhD) -->
+        <details class="card">
+          <summary>
+            <div class="summary-title">
+              <h3>Graduate Students (PhD or MD-PhD)</h3>
+              <p>PhD students can join the lab through Mount Sinai’s GSBS PhD or MD-PhD Program</p>
+            </div>
+            <span class="chevron">▾</span>
+          </summary>
+          <div class="content">
+            <p class="muted">
+              PhD trainees interested in the Liu Lab must apply centrally to the Icahn School of Medicine at Mount Sinai
+              Graduate School of Biomedical Sciences (GSBS) PhD Program (or MD-PhD Program).
+            </p>
+
+            <h3>How to join the lab as a PhD student</h3>
+            <ol class="muted">
+              <li>Apply to the Mount Sinai GSBS PhD Program (Biomedical Sciences).</li>
+              <li>Indicate interests in AI and Emerging Technologies.</li>
+              <li>Once admitted, request a rotation in the Liu Lab.</li>
+              <li>After rotations, select the Liu Lab for dissertation research.</li>
+            </ol>
+
+            <div class="btn-row">
+              <a class="btn" href="https://icahn.mssm.edu/education/graduate" target="_blank" rel="noopener">GSBS PhD Admissions</a>
+              <a class="ghost" href="mailto:contact@liujlab.org?subject=Prospective%20PhD%20Rotation%20-%20Liu%20Lab">Rotation Inquiry</a>
+            </div>
+          </div>
+        </details>
+
+        <!-- Master’s Students / Research Assistant -->
+        <details class="card">
+          <summary>
+            <div class="summary-title">
+              <h3>Master’s Students / Research Assistant</h3>
+              <p>Project-based roles in biosensor analytics, AI model development, and genomics integration.</p>
+            </div>
+            <span class="chevron">▾</span>
+          </summary>
+          <div class="content">
+            <p class="muted">
+              We welcome master’s students as well as RAs on a project-basis. These roles provide exposure to lab methods and may lead to extended appointments.
+            </p>
+
+            <h3>How to apply</h3>
+            <ul class="muted">
+              <li>Send a CV and brief statement of interests</li>
+              <li>Mention the pillar you’re most excited about and why! (Wearables → Disease; Digital Phenotypes → Genes; Translation/Trials)</li>
+            </ul>
+
+            <div class="btn-row">
+              <a class="btn" href="mailto:contact@liujlab.org?subject=Masters%2FRA%20Application%20-%20Liu%20Lab">Email Application</a>
+            </div>
+          </div>
+        </details>
+
+        <!-- Research Interns and Undergraduates -->
+        <details class="card">
+          <summary>
+            <div class="summary-title">
+              <h3>Research Interns and Undergraduates</h3>
+              <p>Case-by-case opportunities for motivated students wanting to engage in biomedical research</p>
+            </div>
+            <span class="chevron">▾</span>
+          </summary>
+          <div class="content">
+            <p class="muted">
+              We occasionally host motivated research interns or external undergraduates who are interested in contributing to digital health and genomics research.
+            </p>
+            <div class="btn-row">
+              <a class="ghost" href="mailto:contact@liujlab.org?subject=Undergraduate%20Research%20Inquiry%20-%20Liu%20Lab">Send interest</a>
+            </div>
+          </div>
+        </details>
+
       </div>
     </div>
   </section>
+
+
 
   <!-- CONTACT -->
   <section id="contact" style="background:var(--panel)">
