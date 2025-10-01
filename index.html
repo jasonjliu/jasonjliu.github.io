@@ -1,120 +1,360 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Liu Lab – AI & Human Health</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Liu Lab — AI, Digital Health & Genomics</title>
+  <meta name="description" content="Liu Lab at Mount Sinai builds interpretable AI for digital health and integrates wearables, genomics, and clinical data to advance precision neurology." />
+  <meta property="og:title" content="Liu Lab — AI, Digital Health & Genomics" />
+  <meta property="og:description" content="Interpretable AI + wearables + genomics for precision neurology." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://liujlab.org" />
+  <meta name="theme-color" content="#0c1b2a" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      color: #333;
-      background: #fafafa;
+    :root{
+      --bg:#ffffff;          
+      --text:#0b1220;        
+      --muted:#667085;       
+      --line:#e6e9ef;        
+      --brand:#3e5997;       
+      --brand-ink:#2c3f6d;   
+      --panel:#f8fafc;       
+      --radius:6px;          
+      --shadow:0 6px 20px rgba(2,14,46,.06);
+      --nav-offset:80px;     
     }
-    header {
-      background: #002d72; /* Sinai blue tone */
-      color: white;
-      padding: 2rem;
-      text-align: center;
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
     }
-    header h1 {
-      margin: 0;
-      font-size: 2.2rem;
+
+    body{
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color:var(--text); background:var(--bg);
     }
-    header p {
-      margin: 0.5rem 0 0;
-      font-size: 1.1rem;
-      font-weight: 300;
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1040px;margin:0 auto;padding:0 24px}
+
+    /* Nav */
+    .nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.85);backdrop-filter:saturate(120%) blur(8px);border-bottom:1px solid var(--line)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700}
+    .mark{width:20px;height:20px;border-radius:var(--radius);background:var(--brand);}
+    .nav-links{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+    .btn{display:inline-block;background:var(--brand);color:#fff;padding:10px 14px;border-radius:var(--radius);font-weight:600;box-shadow:var(--shadow)}
+    .btn:hover{background:var(--brand-ink)}
+
+    /* Hero */
+    header.hero{padding:84px 0 48px;border-bottom:1px solid var(--line)}
+    h1{font-size:clamp(32px,4.2vw,56px);line-height:1.08;margin:8px 0 10px}
+    .kicker{color:var(--muted);text-transform:uppercase;letter-spacing:.14em;font-weight:600;font-size:12px}
+    .lead{color:var(--muted);font-size:clamp(16px,2vw,20px);max-width:840px}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .ghost{border:1px solid var(--line);padding:10px 14px;border-radius:var(--radius);color:var(--text);font-weight:600}
+
+    /* Sections */
+    section{
+      padding:64px 0;
+      border-bottom:1px solid var(--line);
+      scroll-margin-top: var(--nav-offset);
     }
-    main {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 0 1rem;
+    h2{font-size:clamp(22px,3.2vw,32px);margin:0 0 8px}
+    .muted{color:var(--muted)}
+    .grid{display:grid;gap:18px}
+    @media(min-width:860px){.grid-3{grid-template-columns:repeat(3,1fr)}.grid-2{grid-template-columns:repeat(2,1fr)}}
+
+    .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    .card h3{margin:.2rem 0 .35rem;font-size:18px}
+    .tag{display:inline-block;padding:4px 10px;border-radius:999px;background:#eef3ff;color:#274690;font-weight:600;font-size:12px;margin-right:8px}
+
+    /* Publications styling */
+    .pub-actions{display:flex;gap:10px;align-items:center;margin-top:8px;flex-wrap:wrap}
+    .chip{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:#fff;font-weight:600;font-size:12px;color:var(--brand)}
+    .pub-list{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:12px}
+    .pub-item{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
+    .pub-title{font-weight:600;margin:2px 0 6px}
+    .pub-meta{color:var(--muted);font-size:14px;line-height:1.4}
+
+    /* Footer */
+    footer{padding:40px 0;color:var(--muted)}
+    .small{font-size:13px}
+
+    /* Back-to-top button */
+    #toTop {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius);
+      background: var(--brand);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      box-shadow:var(--shadow);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
     }
-    section {
-      margin-bottom: 2.5rem;
-    }
-    h2 {
-      border-bottom: 2px solid #eee;
-      padding-bottom: 0.3rem;
-    }
-    footer {
-      text-align: center;
-      font-size: 0.9rem;
-      padding: 1.5rem;
-      color: #666;
-    }
-    a {
-      color: #002d72;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    .button {
-      display: inline-block;
-      background: #002d72;
-      color: white;
-      padding: 0.6rem 1.2rem;
-      margin-top: 1rem;
-      border-radius: 4px;
-      font-weight: 500;
-    }
-    .button:hover {
-      background: #0040a8;
+    #toTop:hover { background: var(--brand-ink); }
+    #toTop.show {
+      opacity: 1;
+      pointer-events: auto;
     }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ResearchProject",
+    "name": "Liu Lab — AI, Digital Health & Genomics",
+    "url": "https://liujlab.org",
+    "description": "Interpretable AI that integrates wearable-derived digital phenotypes with genomics and clinical data for precision neurology.",
+    "affiliation": {"@type":"CollegeOrUniversity","name":"Icahn School of Medicine at Mount Sinai"},
+    "member": [{"@type":"Person","name":"Jason J. Liu"}]
+  }
+  </script>
 </head>
 <body>
-  <header>
-    <h1>Liu Lab</h1>
-    <p>AI & Human Health – Icahn School of Medicine at Mount Sinai</p>
+  <a id="top"></a>
+  <!-- NAV -->
+  <nav class="nav" aria-label="Primary">
+    <div class="container nav-inner">
+      <div class="brand"><span class="mark" aria-hidden="true"></span> Liu Lab</div>
+      <div class="nav-links">
+        <a href="#top">Home</a>
+        <a href="#research-areas">Research Areas</a>
+        <a href="#people">People</a>
+        <a href="#publications">Publications</a>
+        <a href="#openings" class="btn">We’re Hiring</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <div class="kicker">Icahn School of Medicine at Mount Sinai · Department of AI & Human Health</div>
+      <h1>AI for Digital Health and Genomics</h1>
+      <p class="lead">
+        Our lab works at the intersection of artificial intelligence, digital health, and genomics.
+        We develop interpretable AI models that connect biosensor (e.g., wearables) signals with
+        molecular variation to map disease trajectories and mechanisms.
+      </p>
+      <div class="cta-row">
+        <!-- Scrolls to openings; email is listed there -->
+        <a class="btn" href="#openings">Join as a Postdoc</a>
+        <a class="ghost" href="#contact">Contact</a>
+      </div>
+    </div>
   </header>
 
-  <main>
-    <section id="about">
-      <h2>About</h2>
-      <p>
-        The Liu Lab, led by <strong>Jason J. Liu, PhD</strong>, develops interpretable AI frameworks 
-        that integrate digital health data from wearables with genomic and clinical information. 
-        Our goal is to unravel disease trajectories and mechanisms in neuropsychiatric and 
-        neurodegenerative disorders, advancing precision medicine.
+  <!-- RESEARCH AREAS (Mission + Research merged) -->
+  <section id="research-areas" style="background:var(--panel)">
+    <div class="container">
+      <h2>Research Areas</h2>
+      <p class="muted">
+        We focus on <strong>precision neurology</strong>: building interpretable AI that links real-world physiology and behavior to molecular mechanisms to understand the brain.
+        Our work combines digital and wearable time-series modeling, statistical genetics, and causal inference across three pillars:
       </p>
-    </section>
 
-    <section id="opportunities">
-      <h2>Opportunities</h2>
-      <p>
-        We are actively recruiting postdoctoral researchers and students to join our team. 
-        If you are excited about AI, digital health, and genomics, we’d love to hear from you.
-      </p>
-      <a href="mailto:contact@liujlab.org" class="button">Apply Now</a>
-    </section>
+      <div class="grid grid-3" style="margin-top:18px">
+        <div class="card">
+          <span class="tag">Digital Health</span>
+          <h3>Wearables → Disease</h3>
+          <p class="muted">
+            From continuous biosensor data (activity, sleep, HRV, gait) to robust digital phenotypes that capture
+            symptoms, progression, and treatment response in real-world settings.
+          </p>
+        </div>
 
-    <section id="contact">
+        <div class="card">
+          <span class="tag">Integrating Genomics</span>
+          <h3>Digital Phenotypes → Genes</h3>
+          <p class="muted">
+            Map digital traits to genetic architecture using GWAS/eQTL/regulatory annotation to identify pathways,
+            risk mechanisms, and biologically grounded biomarkers.
+          </p>
+        </div>
+
+        <div class="card">
+          <span class="tag">Translation</span>
+          <h3>Therapeutics & Trials</h3>
+          <p class="muted">
+            Turn signals into mechanisms and targets; design digital biomarkers and endpoints for neurology trials,
+            enabling earlier detection, stratification, and precision intervention.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PEOPLE -->
+  <section id="people">
+    <div class="container">
+      <h2>People</h2>
+      <div class="grid grid-2" style="margin-top:12px">
+        <div class="card">
+          <h3>Jason J. Liu, PhD</h3>
+          <p class="muted">
+            Assistant Professor<br>
+            Dept. AI &amp; Human Health<br>
+            Dept. Psychiatry
+          </p>
+        </div>
+        <div class="card">
+          <h3>We’re recruiting</h3>
+          <p class="muted">Postdocs and students excited about AI, wearables, and genomics. See <a href="#openings">Open Positions</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section id="publications" style="background:var(--panel)">
+    <div class="container">
+      <h2>Selected Publications</h2>
+      <div class="pub-actions">
+        <span class="chip"><em>*Co-first author</em></span>
+        <a class="chip" href="https://scholar.google.com/citations?user=sg66DVAAAAAJ&hl=en" target="_blank" rel="noopener">Full list on Google Scholar →</a>
+      </div>
+
+      <ul class="pub-list">
+        <li class="pub-item">
+          <div class="pub-title">
+            <strong>Liu J*</strong>, Borsari B*, Li Y, Liu S, Gao Y, Xin X, Lou S, Jensen M, Garrido-Martín D, Verplaetse T, Ash G, Zhang J, Girgenti M, Roberts W, Gerstein M.
+          </div>
+          <div class="pub-meta">
+            Digital phenotyping from wearables using AI characterizes psychiatric disorders and identifies genetic associations.
+            <em>Cell</em>. 2025;188(2):515-529.e15. DOI: 10.1016/j.cell.2024.11.012. PMID: 39706190.
+          </div>
+        </li>
+
+        <li class="pub-item">
+          <div class="pub-title">
+            Emani P*, <strong>Liu J*</strong>, Clarke D*, Jensen M*, Warrell J*, Gupta C*, Meng R*, Lee C*, Xu S*, Dursun C*, Lou S*, Chen Y, Chu Z, ... Gerstein M, Geschwind D.
+          </div>
+          <div class="pub-meta">
+            Single-cell genomics and regulatory networks for 388 human brains.
+            <em>Science</em>. 2024;384:eadi5199. PMID: 38781369. PMCID: PMC11365579. DOI: 10.1126/science.adi5199.
+          </div>
+        </li>
+
+        <li class="pub-item">
+          <div class="pub-title">
+            Rozowsky J*, Gao J*, Borsari B*, Yang Y*, Galeev T*, Gürsoy G*, Epstein C*, Xiong K*, Xu J*, Li T*, <strong>Liu J*</strong>, Yu K, ... Gerstein M, Gingeras T.
+          </div>
+          <div class="pub-meta">
+            The EN-TEx resource of multi-tissue personal epigenomes &amp; variant-impact models.
+            <em>Cell</em>. 2023;186:1493-1511.e40. PMID: 37001506. PMCID: PMC10074325. DOI: 10.1016/j.cell.2023.02.018.
+          </div>
+        </li>
+
+        <li class="pub-item">
+          <div class="pub-title">
+            <strong>Liu J*</strong>, Spakowicz DJ*, Ash GI, Hoyd R, Ahluwalia R, Zhang A, Lou S, Lee D, Zhang J, Presley C, Greene A, Stults-Kolehmainen M, Nally LM, Baker JS, Fucito LM, Weinzimer SA, Papachristos AV, Gerstein M.
+          </div>
+          <div class="pub-meta">
+            Bayesian structural time series for biomedical sensor data: A flexible modeling framework for evaluating interventions.
+            <em>PLOS Comput Biol</em>. 2021;17:e1009303. PMID: 34424894. PMCID: PMC8412351. DOI: 10.1371/journal.pcbi.1009303.
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- OPENINGS -->
+  <section id="openings">
+    <div class="container">
+      <h2>Open Positions</h2>
+      <div class="card">
+        <h3>Postdoctoral Researchers — AI, Digital Health &amp; Genomics</h3>
+        <p class="muted">
+          Join us to build interpretable AI that links wearable-derived digital phenotypes with genomics and clinical data
+          for precision neurology.
+        </p>
+
+        <h3>Research opportunities in the lab include:</h3>
+        <ul class="muted">
+          <li>Building novel AI/ML models for multi-modal digital health time-series and genomic data</li>
+          <li>Developing digital biomarkers from real-world digital health (e.g., wearable) data</li>
+          <li>Integrating genomics/genetics with digital health to identify therapeutic targets</li>
+          <li>Translating computational findings into mechanistic and clinical insights</li>
+        </ul>
+
+        <h3>Qualifications:</h3>
+        <ul class="muted">
+          <li>PhD in computational biology, computer science, statistics, math, neuroscience, or related field</li>
+          <li>Strong background in AI/ML, coding, data science, and statistics</li>
+          <li>Enthusiasm for interdisciplinary research and collaborative team science</li>
+        </ul>
+
+        <h3>What we offer:</h3>
+        <ul class="muted">
+          <li>A highly collaborative environment at the intersection of AI and medicine</li>
+          <li>Access to large-scale datasets and Mount Sinai’s advanced computing resources</li>
+          <li>Mentorship tailored for academic and industry career paths</li>
+        </ul>
+
+        <p class="muted">
+          Interested candidates should send a CV and a brief statement of research interests to
+          <strong>contact (at) liujlab (dot) org</strong>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="background:var(--panel)">
+    <div class="container">
       <h2>Contact</h2>
-      <p>
-        Jason J. Liu, PhD<br />
-        Assistant Professor, Department of AI & Human Health<br />
-        Icahn School of Medicine at Mount Sinai
-      </p>
-      <p>
-        📧 <a href="mailto:contact@liujlab.org">contact@liujlab.org</a><br />
-        🌐 <a href="https://scholar.google.com/">Google Scholar</a> | 
-        <a href="https://x.com/JasonJLiu">X</a> | 
-        <a href="https://www.linkedin.com/">LinkedIn</a>
-      </p>
-    </section>
-  </main>
+      <div class="grid grid-2" style="margin-top:12px">
+        <div class="card">
+          <p class="muted">
+            Liu Lab · Department of AI & Human Health<br>
+            Icahn School of Medicine at Mount Sinai
+          </p>
+          <p class="muted">
+            Email: <strong>contact (at) liujlab (dot) org</strong>
+          </p>
+        </div>
+        <div class="card">
+          <h3>Follow</h3>
+          <p class="muted"><a href="#">Twitter</a> · <a href="#">LinkedIn</a> · <a href="#">GitHub</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <footer>
-    © <span id="year"></span> Liu Lab · liujlab.org
+    <div class="container small">© <span id="year"></span> Liu Lab · liujlab.org</div>
   </footer>
 
+  <!-- Back-to-top button -->
+  <button id="toTop" aria-label="Back to top">↑</button>
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const toTop = document.getElementById('toTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        toTop.classList.add('show');
+      } else {
+        toTop.classList.remove('show');
+      }
+    });
+    toTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   </script>
 </body>
 </html>
